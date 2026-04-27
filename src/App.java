@@ -209,13 +209,18 @@ public class App {
      * @param pedido O pedido que deve ser finalizado.
      */
     public static void finalizarPedido(Pedido pedido) {
+        
+    	Pilha pilhaDePedidos = new Pilha();
+        int matricula = 8888;
+        
+        pilhaDePedidos.empilhar(matricula);
+        System.out.println(pilhaDePedidos);
     	
-    	// TODO
     }
     
     public static void listarProdutosPedidosRecentes() {
     	
-    	// TODO
+    	
     }
     
 	public static void main(String[] args) {
