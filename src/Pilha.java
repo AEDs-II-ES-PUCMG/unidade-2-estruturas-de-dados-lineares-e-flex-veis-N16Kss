@@ -40,6 +40,26 @@ public class Pilha<E> {
 
 	}
 
+	public void mostrarPilha(){
+		Celula<E> atual = topo;
+		while(atual!=fundo){
+			System.out.println(atual.getItem());
+			atual= atual.getProximo();
+		}
+	}
+
+	public void mostrarCerto(){
+		Celula<E> atual = topo;
+		certo(atual);
+	}
+
+	public void certo(Celula<E> atual){
+		if(atual!= fundo){
+			certo(atual.getProximo());
+			System.out.println(atual.getItem());
+		}
+	}
+
 	/**
 	 * Cria e devolve uma nova pilha contendo os primeiros numItens elementos
 	 * do topo da pilha atual.
