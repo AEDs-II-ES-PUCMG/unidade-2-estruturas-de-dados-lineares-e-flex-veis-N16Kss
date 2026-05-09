@@ -21,6 +21,8 @@ public class App {
 
     /** Pilha de pedidos */
     static Pilha<Pedido> pilhaPedidos = new Pilha<>();
+
+    static Pilha<ItemDePedido[]> pilhaProdutos = new Pilha<>();
         
     static void limparTela() {
         System.out.print("\033[H\033[2J");
@@ -209,19 +211,59 @@ public class App {
      * @param pedido O pedido que deve ser finalizado.
      */
     public static void finalizarPedido(Pedido pedido) {
+
+        if (pedido == null) {
+        System.out.println("Pedido inválido.");
+        return;
+    }
+
+    
+    if (pedido.getDataPedido().isAfter(LocalDate.now())) {
+        System.out.println("Pedido com data futura não pode ser finalizado.");
+        return;
+    }
+
+    pilhaPedidos.empilhar(pedido);
+    System.out.println("Pedido " + pedido.getIdPedido() + " finalizado!");
         
-    	Pilha pilhaDePedidos = new Pilha();
-        int matricula = 8888;
-        
-        pilhaDePedidos.empilhar(matricula);
-        System.out.println(pilhaDePedidos);
-    	
     }
     
     public static void listarProdutosPedidosRecentes() {
-    	
-    	
+
+        Celula<Pedido> atual = pilhaPedidos.getTopo();
+
+
+        while (atual != pilhaPedidos.getFundo()) {
+
+        Pedido pedido = atual.getItem();
+
+        if (pedido.getDataPedido()
+                .isAfter(LocalDate.now().minusDays(7))) {
+
+            ItemDePedido[] itens = pedido.getItensDoPedido();
+
+            for (int i = 0; i < itens.length; i++) {
+
+                if (itens[i] != null) {
+
+                    pilhaProdutos.empilhar(itens);
+
+                    System.out.println(
+                        itens[i].getProduto().descricao
+                    );
+                }
+            }
+        }
+
+        atual = atual.getProximo();
     }
+}
+    
+        
+
+    
+
+
     
 	public static void main(String[] args) {
 		

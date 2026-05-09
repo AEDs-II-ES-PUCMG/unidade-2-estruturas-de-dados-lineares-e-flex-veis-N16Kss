@@ -40,6 +40,42 @@ public class Pilha<E> {
 
 	}
 
+	
+
+	public void mostrarPilha(){
+		Celula<E> atual = topo;
+		while(atual!=fundo){
+			System.out.println(atual.getItem());
+			atual=atual.getProximo();
+		}
+	}
+
+	public void mostrarCerto(){
+		Celula<E> atual = topo;
+		certo(atual);
+	}
+
+	public void certo(Celula<E> atual){
+		if(atual!= fundo){
+			certo(atual.getProximo());
+			System.out.println(atual.getItem());
+		}
+	}
+
+
+
+public Celula<E> getTopo() {
+    return topo;
+}
+
+public Celula<E> getFundo(){
+	return fundo;
+}
+
+
+
+
+
 	/**
 	 * Cria e devolve uma nova pilha contendo os primeiros numItens elementos
 	 * do topo da pilha atual.
@@ -53,11 +89,35 @@ public class Pilha<E> {
 	 * @throws IllegalArgumentException se a pilha não contém numItens elementos.
 	 */
 	public Pilha<E> subPilha(int numItens) {
+
+		if(vazia()){
+			throw new IllegalArgumentException("A pilha está vazia");
+		}
 		
-		// TODO
-			
+
+		Pilha<E> auxiliar = new Pilha<E>();
+		Pilha<E> novaPilha = new Pilha<E>();
+
+		Celula<E> atual = topo;
+
+    	int contador = 0;
+
+		while (atual != fundo && contador < numItens) {
+
+        auxiliar.empilhar(atual.getItem());
+
+        atual = atual.getProximo();
+
+        contador++;
+    }
 
 
-		return null;
+		while (!auxiliar.vazia()) {
+        novaPilha.empilhar(auxiliar.desempilhar());
+    }
+
+
+		
+		return novaPilha;
 	}
 }

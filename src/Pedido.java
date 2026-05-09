@@ -188,4 +188,19 @@ public class Pedido implements Comparable<Pedido> {
 		
 		return (this.hashCode() - outroPedido.hashCode());
 	}
+
+	public int getUltimoID() {
+		return ultimoID;
+	}
+
+	public int getIdPedido(){
+		return idPedido;
+	}
+
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
+
+
+	
 }
