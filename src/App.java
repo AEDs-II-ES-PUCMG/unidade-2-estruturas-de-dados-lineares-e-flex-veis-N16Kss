@@ -265,7 +265,7 @@ public class App {
 
 
     
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 		
 		teclado = new Scanner(System.in, Charset.forName("UTF-8"));
         
@@ -291,4 +291,42 @@ public class App {
 
         teclado.close();    
     }
+
+
+    
+
+    public Fila<Character> criarFilaNomes(){
+
+        Character[] nome = {'P','E','D','R','O', 'M','A', 'T','O','S'};
+        Fila<Character> Character = new Fila<Character>();
+        int i;
+        
+        for(i =0; i<nome.length; i++){
+            Character.enfileirar(nome[i]);
+        }
+        
+        return Character;
+    
+    }
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+/*int matricula =  {} 
+Pilha<Integer> pilha = new Pilha()
+pilha.empilhar(matricula)
+for(int i=0; int<matricula.lenght; i++){
+    print
 }
+
+*/
